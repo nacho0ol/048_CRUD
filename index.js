@@ -78,3 +78,14 @@ app.put("/api/users/:id", (req, res) => {
     }
   );
 });
+
+app.delete("/api/users/:id", (req, res) => {
+  const userId = req.params.id;
+  db.query("DELETE FROM biodata WHERE id = ?", [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Database error" });
+    }
+    res.json({ message: "User deleted successfully" });
+  });
+});
