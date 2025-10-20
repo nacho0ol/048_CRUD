@@ -26,5 +26,16 @@ db.connect((err) => {
     console.error("Error connecting to database:" + err.stack);
     return;
   }
-  console.log("Connected to database");
+  console.log("Connected succesfully");
+});
+
+app.get("api/users", (req, res) => {
+  db.query("SELECT * FROM users", (err, results) => {
+    if (err) {
+      console.error("Error executing query: " + err.stack);
+      res.status(500).send("Error fetching users");
+      return;
+    }
+    res.json(results);
+  });
 });
