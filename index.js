@@ -29,7 +29,7 @@ db.connect((err) => {
   console.log("Connected succesfully");
 });
 
-app.get("api/users", (req, res) => {
+app.get("/api/users", (req, res) => {
   db.query("SELECT * FROM biodata", (err, results) => {
     if (err) {
       console.error("Error executing query: " + err.stack);
